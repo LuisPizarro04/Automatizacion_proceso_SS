@@ -1,0 +1,1 @@
+type="submit" onclick="validar();" name="action" value="validar" class="btn btn-success validar_no_validar col-md-12" style="margin-top: 0px;">Validar

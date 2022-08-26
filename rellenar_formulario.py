@@ -56,6 +56,8 @@ print("Ingresando a la sección 1...........")
 driver.get(enlacenotificacion)
 time.sleep(3)
 
+
+
 # SECCIÓN 2 ANTECEDENTES CLINICOS Y EPIDEMIOLOGICOS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # -Ir a la sección Antecedentes clínicos y epidemiológicos--------------------------------------------------------------
 print("Ingresando a la sección 2...........")

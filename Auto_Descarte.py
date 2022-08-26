@@ -88,11 +88,14 @@ for i in range(len(df)):
     # Selección del tipo de paciente
     tipo_paciente = driver.find_element(By.ID, 'tipo_especifico')
     tipo_pacienteOD = Select(tipo_paciente)
+    time.sleep(2)
+    tipo_pacienteOD.select_by_visible_text("IRAG")
+    time.sleep(2)
     tipo_pacienteOD.select_by_visible_text("IRA")
     # tipo_paciente.send_keys("IRA")
     # Selección del tipo de muestra
     print("Esperando tipos de muestra......")
-    time.sleep(8)
+    time.sleep(12)
     tipo_muestra = driver.find_element(By.XPATH, "//*[@id='select_id_tipo_muestra']")
     tipo_muestraOD = Select(tipo_muestra)
     tipo_muestraOD.select_by_visible_text("Hisopado nasofaringeo")

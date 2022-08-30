@@ -46,7 +46,7 @@ coronavirus.click()"""
 
 # ENTRAR A LA NOTIFICACIÓN POR UN FOLIO /50/FOLIO+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 notificacion = "https://epivigila.minsal.cl/index.php/administracion/ver-formulario/50/"
-folio = 28453238
+folio = 26228869
 folio = folio + 50000
 enlacenotificacion = notificacion + str(folio)
 # print(enlacenotificacion)  # Prueba para saber si funciona la unión del link mas el folio
@@ -56,37 +56,33 @@ print("Ingresando a la sección 1...........")
 driver.get(enlacenotificacion)
 time.sleep(3)
 
-
-
-# SECCIÓN 2 ANTECEDENTES CLINICOS Y EPIDEMIOLOGICOS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# -Ir a la sección Antecedentes clínicos y epidemiológicos--------------------------------------------------------------
-print("Ingresando a la sección 2...........")
+# SE DEBE INGRESAR DESCONOCIDO EN OCUPACIÓN PRINCIPAL  Y RUBRO: SI ESTOS ESTÁN VACIOS
+ocupacion_principal = driver.find_element(By.XPATH, "//*[@id='actividad_laboral_declarada']")
+time.sleep(1)
+ocupacion_principal.send_keys("DESCONOCIDO")
+time.sleep(1)
+rubro = driver.find_element(By.XPATH, "//*[@id='rubro_trabajo']")
+time.sleep(1)
+rubro.send_keys("DESCONOCIDO")
+time.sleep(1)
+# SECCIÓN 2 ANTECEDENTES CLINICOS Y EPIDEMIOLOGICOS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# -Ir a la sección Antecedentes clínicos y epidemiológicos------------------------------------------------------
+print("Ingresando a la sección 2del registro: ")
 seccion_2 = driver.find_element(By.PARTIAL_LINK_TEXT, 'Antecedentes clínicos y epidemiológicos')
 seccion_2.click()
 time.sleep(3)
+# Ingreso de la fecha de primera consulta
+print("Ingresando fecha de primera consulta......")
+time.sleep(2)
+# fecha_primera_c = driver.find_element(By.ID, 'fecha_primera_consulta')
+# fecha_primera_c.send_keys(fecha_p_c)
+# //*[@id="id_institucion_primera_consulta"]
 
-# SECCIÓN 3 DATOS LABORATORIO+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# -Ir a la sección Datos laboratorio------------------------------------------------------------------------------------
-print("Ingresando a la sección 3...........")
-seccion_3 = driver.find_element(By.PARTIAL_LINK_TEXT, 'Datos laboratorio')
-seccion_3.click()
-time.sleep(3)
-# PRUEBAS PARA INGRESAR EL TIPO DE MUESTRA~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# --Ingreso de la muestra a la plataforma
-eliminar_muestra = driver.find_element(By.XPATH, "//*[@id='btn_eliminar_muestra_especifica']")
-eliminar_muestra.click()
-# //*[@id="btn_eliminar_laboratorio"]
-print("Ingresando datos de la muestra ")
-# Selección del tipo de paciente
-tipo_paciente = driver.find_element(By.ID, 'tipo_especifico')
-tipo_pacienteOD = Select(tipo_paciente)
-tipo_pacienteOD.select_by_visible_text("IRAG")
-tipo_pacienteOD.select_by_visible_text("IRA")
-# tipo_paciente.send_keys("IRA")
-# Selección del tipo de muestra
-print("Esperando tipos de muestra......")
-time.sleep(8)
-tipo_muestra = driver.find_element(By.XPATH, "//*[@id='select_id_tipo_muestra']")
-tipo_muestraOD = Select(tipo_muestra)
-tipo_muestraOD.select_by_visible_text("Hisopado nasofaringeo")
-# //*[@id='btn_eliminar_laboratorio']
+
+"""est_salud_antc_cli =driver.find_element(By.XPATH, "//*[@id='select2-id_institucion_primera_consulta-container']")
+time.sleep(1)
+est_salud_antc_cli.click()
+time.sleep(1)
+mov_lis = driver.find_element(By.XPATH, "//*[@id='select2-id_institucion_primera_consulta-results']")"""
+driver.execute_script("document.getElementsByName('id_institucion_primera_consulta')[0].value='Ejercicio libre'")
+# mov_lis.find_element(By.XPATH, "//*[@id='select2-id_institucion_primera_consulta-results']/li[7]")
